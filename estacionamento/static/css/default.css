@@ -1,0 +1,47 @@
+table {
+    width: 100%;
+}
+.vaga {
+	background-color: #efefef;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin: 15px;
+	height: 100px;
+	width: 100px;
+	position: relative;
+	color: #fff;
+	border-radius: 5px;
+	background-size: 50px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.vaga span {
+	background-color: rgb(2, 68, 68);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 20px;
+	height: 30px;
+	width: 30px;
+	font-size: 75%;
+	position: absolute;
+	top: -15px;
+	right: -15px;
+}
+.ocupada {
+	background-color: darkred;
+}
+.desocupada {
+	background-color: darkgreen;
+}
+
+.pcd {
+	background-image: url("../img/icon-pcd.svg");
+}
+.gestante {
+	background-image: url("../img/icon-gestante.svg");
+}
+.idoso {
+	background-image: url("../img/icon-idoso.svg");
+}
