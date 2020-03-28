@@ -1,3 +1,3 @@
 <?php
-#header("Location: estacionamento/?redir=ok");
-echo "Test";
+header("Location: estacionamento/?redir=ok");
+#echo "Test";
