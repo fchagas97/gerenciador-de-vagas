@@ -20,14 +20,13 @@ foreach ($shoppings as $shopping):
     $name    = $shopping->nome;
     $address = $shopping->endereco;
     $coords  = geocode($address, $name);
-            print($coords);
     if (!empty($coords)) {
         array_push($coordinates_list, $coords);
     }
 ?>
             <tr>
             <td class="align-middle text-truncate" title="<?php echo $name ?>"><?php echo $name; ?></td>
-            <td class="align-middle text-truncate"><?php echo $address; ?></td>
+            <td class="align-middle text-truncate"><?php echo geocode($address, $name); ?></td>
             <td class="align-middle text-center"><?php echo $totalVagas($id); ?></td>
             <td class="align-middle text-center">
                 <a
