@@ -26,7 +26,7 @@ foreach ($shoppings as $shopping):
 ?>
             <tr>
             <td class="align-middle text-truncate" title="<?php echo $name ?>"><?php echo $name; ?></td>
-            <td class="align-middle text-truncate"><?php echo geocode($address, $name); ?></td>
+            <td class="align-middle text-truncate"><?php echo $address; ?></td>
             <td class="align-middle text-center"><?php echo $totalVagas($id); ?></td>
             <td class="align-middle text-center">
                 <a
