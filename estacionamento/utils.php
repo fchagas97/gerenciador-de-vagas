@@ -23,10 +23,10 @@ function geocode($address, $name){
 
     if(!empty($resp)) {
         #return array(floatval($resp[0]['lat']), floatval($resp[0]['lon']), $name);
-        return $resp;
+        return array($resp_json, $name);
     } else {
         #return array();
-        return $resp;
+        return array($resp_json, $name);
     }
 
 }
