@@ -20,6 +20,7 @@ foreach ($shoppings as $shopping):
     $name    = $shopping->nome;
     $address = $shopping->endereco;
     $coords  = geocode($address, $name);
+            print($coords);
     if (!empty($coords)) {
         array_push($coordinates_list, $coords);
     }
