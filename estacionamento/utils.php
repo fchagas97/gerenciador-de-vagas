@@ -13,10 +13,10 @@ function geocode($address, $name){
     // url encode the address
     $address = urlencode($address);
 
-    $url = "http://nominatim.openstreetmap.org/?format=json&addressdetails=1&q={$address}&format=json&limit=1";
-    $USERAGENT = $_SERVER['HTTP_USER_AGENT'];
+    $email = getenv('GEOCODE_EMAIL');
+    $url = "http://nominatim.openstreetmap.org/?format=json&addressdetails=1&q={$address}&format=json&limit=1&email={$email}";
     
-    $opts = array('http'=>array('header'=>"User-Agent: $USERAGENT\r\n"));
+    $opts = array('http'=>array('header'=>"User-Agent: StevesCleverAddressScript 3.7.6\r\n"));
     $context = stream_context_create($opts);
 
     // get the json response
