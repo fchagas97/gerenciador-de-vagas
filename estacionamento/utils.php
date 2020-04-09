@@ -9,7 +9,7 @@ function sanitize($var) {
 }
 
 function geocode($address, $name){
-
+error_reporting(E_ALL);
     // url encode the address
     $address = urlencode($address);
 
@@ -22,11 +22,9 @@ function geocode($address, $name){
     $resp = json_decode($resp_json, true);
 
     if(!empty($resp)) {
-        #return array(floatval($resp[0]['lat']), floatval($resp[0]['lon']), $name);
-        return array($resp_json, $name);
+        return array(floatval($resp[0]['lat']), floatval($resp[0]['lon']), $name);
     } else {
-        #return array();
-        return array($resp_json, $name);
+        return array();
     }
 
 }
