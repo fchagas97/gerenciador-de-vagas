@@ -122,7 +122,7 @@
     <i>Francisco das Chagas</i><br/>
     <i>José Edcarlos</i><br/>
     <i>Saulo Silva</i><br/>
-    <a href="https://bitbucket.org/fchagas97/ifce-igt-ti-ps2-estacionamento/src/master">Código-fonte</a>
+    <a href="https://github.com/fchagas97/gerenciador-de-vagas/">Código-fonte</a>
     </p>
     </body>
 </html>
