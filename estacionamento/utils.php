@@ -20,6 +20,7 @@ function geocode($address, $name){
 
     // decode the json
     $resp = json_decode($resp_json, true);
+    print($resp);
 
     if(!empty($resp)) {
         return array(floatval($resp[0]['lat']), floatval($resp[0]['lon']), $name);
