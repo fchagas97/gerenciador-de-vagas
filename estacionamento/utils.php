@@ -9,14 +9,17 @@ function sanitize($var) {
 }
 
 function geocode($address, $name){
-error_reporting(E_ALL);
+    
     // url encode the address
     $address = urlencode($address);
 
     $url = "http://nominatim.openstreetmap.org/?format=json&addressdetails=1&q={$address}&format=json&limit=1";
+    
+    $opts = array('http'=>array('header'=>"User-Agent: StevesCleverAddressScript 3.7.6\r\n"));
+    $context = stream_context_create($opts);
 
     // get the json response
-    $resp_json = file_get_contents($url);
+    $resp_json = file_get_contents($url, false, $context);
 
     // decode the json
     $resp = json_decode($resp_json, true);
