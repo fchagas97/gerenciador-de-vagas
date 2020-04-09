@@ -14,8 +14,9 @@ function geocode($address, $name){
     $address = urlencode($address);
 
     $url = "http://nominatim.openstreetmap.org/?format=json&addressdetails=1&q={$address}&format=json&limit=1";
+    $USERAGENT = $_SERVER['HTTP_USER_AGENT'];
     
-    $opts = array('http'=>array('header'=>"User-Agent: StevesCleverAddressScript 3.7.6\r\n"));
+    $opts = array('http'=>array('header'=>"User-Agent: $USERAGENT\r\n"));
     $context = stream_context_create($opts);
 
     // get the json response
