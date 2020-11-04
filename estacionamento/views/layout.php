@@ -107,7 +107,7 @@
                 </div>
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="static/js/jquery.min.js"></script>
         <script src="static/js/bootstrap-4.3.1.bundle.min.js"></script>
 
         <script type="text/javascript">
