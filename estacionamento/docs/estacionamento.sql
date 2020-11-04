@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Tempo de geração: 27/07/2019 às 17:19
--- Versão do servidor: 10.3.15-MariaDB
--- Versão do PHP: 7.3.6
+-- Host: 127.0.0.1:3306
+-- Tempo de geração: 04-Nov-2020 às 03:23
+-- Versão do servidor: 8.0.22
+-- versão do PHP: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,34 +18,25 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `estacionamento`
+-- Banco de dados: `getenv('DB_NAME')`
 --
-CREATE DATABASE IF NOT EXISTS `estacionamento` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `estacionamento`;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `clientes`
+-- Estrutura da tabela `clientes`
 --
 
-DROP TABLE IF EXISTS `clientes`;
 CREATE TABLE `clientes` (
-  `cliente_id` int(11) NOT NULL,
-  `cliente_nome` varchar(70) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cliente_telefone` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cliente_email` varchar(70) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `shopping_id` int(11) NOT NULL
+  `cliente_id` int NOT NULL,
+  `cliente_nome` varchar(70) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cliente_telefone` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cliente_email` varchar(70) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `shopping_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- RELACIONAMENTOS PARA TABELAS `clientes`:
---   `shopping_id`
---       `shoppings` -> `shopping_id`
---
-
---
--- Despejando dados para a tabela `clientes`
+-- Extraindo dados da tabela `clientes`
 --
 
 INSERT INTO `clientes` (`cliente_id`, `cliente_nome`, `cliente_telefone`, `cliente_email`, `shopping_id`) VALUES
@@ -57,78 +47,65 @@ INSERT INTO `clientes` (`cliente_id`, `cliente_nome`, `cliente_telefone`, `clien
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `shoppings`
+-- Estrutura da tabela `shoppings`
 --
 
-DROP TABLE IF EXISTS `shoppings`;
 CREATE TABLE `shoppings` (
-  `shopping_id` int(11) NOT NULL,
-  `shopping_nome` varchar(70) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `shopping_endereco` text COLLATE utf8mb4_unicode_ci NOT NULL
+  `shopping_id` int NOT NULL,
+  `shopping_nome` varchar(70) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `shopping_endereco` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- RELACIONAMENTOS PARA TABELAS `shoppings`:
---
-
---
--- Despejando dados para a tabela `shoppings`
+-- Extraindo dados da tabela `shoppings`
 --
 
 INSERT INTO `shoppings` (`shopping_id`, `shopping_nome`, `shopping_endereco`) VALUES
-(1, 'Shopping Iguatemi Fortaleza', 'Av. Washington Soares, 85 - Edson Queiroz, Fortaleza - CE, 60810-060'),
-(2, 'Shopping Parangaba', 'Rua Germano Franck, 300 - Parangaba, Fortaleza - CE, 06074-020');
+(1, 'Shopping Iguatemi Fortaleza', 'Avenida Washington Soares, 85 - Edson Queiroz, Fortaleza - CE'),
+(2, 'Shopping Parangaba', 'Rua Germano Franck, 300 - Parangaba, Fortaleza - CE'),
+(3, 'Shopping RioMar Fortaleza', 'Rua Desembargador Lauro Nogueira, 1500 - Papicu, Fortaleza - CE');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `vagas`
+-- Estrutura da tabela `vagas`
 --
 
-DROP TABLE IF EXISTS `vagas`;
 CREATE TABLE `vagas` (
-  `vaga_id` int(11) NOT NULL,
-  `vaga_numero` int(11) NOT NULL,
-  `vaga_disponibilidade` enum('desocupada','ocupada') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'desocupada',
-  `vaga_modalidade` enum('livre','idoso','gestante','pcd') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'livre',
-  `cliente_id` int(11) DEFAULT NULL,
-  `shopping_id` int(11) NOT NULL
+  `vaga_id` int NOT NULL,
+  `vaga_numero` int NOT NULL,
+  `vaga_disponibilidade` enum('desocupada','ocupada') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'desocupada',
+  `vaga_modalidade` enum('livre','idoso','gestante','pcd') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'livre',
+  `cliente_id` int DEFAULT NULL,
+  `shopping_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- RELACIONAMENTOS PARA TABELAS `vagas`:
---   `cliente_id`
---       `clientes` -> `cliente_id`
---   `shopping_id`
---       `shoppings` -> `shopping_id`
---
-
---
--- Despejando dados para a tabela `vagas`
+-- Extraindo dados da tabela `vagas`
 --
 
 INSERT INTO `vagas` (`vaga_id`, `vaga_numero`, `vaga_disponibilidade`, `vaga_modalidade`, `cliente_id`, `shopping_id`) VALUES
 (1, 1, 'ocupada', 'livre', 1, 1);
 
 --
--- Índices de tabelas apagadas
+-- Índices para tabelas despejadas
 --
 
 --
--- Índices de tabela `clientes`
+-- Índices para tabela `clientes`
 --
 ALTER TABLE `clientes`
   ADD PRIMARY KEY (`cliente_id`),
   ADD KEY `fkClienteShopping` (`shopping_id`);
 
 --
--- Índices de tabela `shoppings`
+-- Índices para tabela `shoppings`
 --
 ALTER TABLE `shoppings`
   ADD PRIMARY KEY (`shopping_id`);
 
 --
--- Índices de tabela `vagas`
+-- Índices para tabela `vagas`
 --
 ALTER TABLE `vagas`
   ADD PRIMARY KEY (`vaga_id`),
@@ -136,39 +113,39 @@ ALTER TABLE `vagas`
   ADD KEY `fkVagaShopping` (`shopping_id`);
 
 --
--- AUTO_INCREMENT de tabelas apagadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
 -- AUTO_INCREMENT de tabela `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `cliente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `cliente_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `shoppings`
 --
 ALTER TABLE `shoppings`
-  MODIFY `shopping_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `shopping_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `vagas`
 --
 ALTER TABLE `vagas`
-  MODIFY `vaga_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `vaga_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Restrições para dumps de tabelas
+-- Restrições para despejos de tabelas
 --
 
 --
--- Restrições para tabelas `clientes`
+-- Limitadores para a tabela `clientes`
 --
 ALTER TABLE `clientes`
   ADD CONSTRAINT `fkClienteShopping` FOREIGN KEY (`shopping_id`) REFERENCES `shoppings` (`shopping_id`);
 
 --
--- Restrições para tabelas `vagas`
+-- Limitadores para a tabela `vagas`
 --
 ALTER TABLE `vagas`
   ADD CONSTRAINT `fkVagaCliente` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`cliente_id`) ON DELETE CASCADE ON UPDATE CASCADE,
