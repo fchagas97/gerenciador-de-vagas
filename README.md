@@ -5,4 +5,4 @@ Sistema para gerenciamento de vagas de estacionamento, desenvolvido na disciplin
 
 ### Serviços utilizados
 - **Hospedagem:** [Heroku](https://devcenter.heroku.com/articles/getting-started-with-php) (PHP)
-- **Base MySQL:** [Remote MySQL](https://remotemysql.com/)
+- **Base MySQL:** [db4free.net](https://www.db4free.net/)
